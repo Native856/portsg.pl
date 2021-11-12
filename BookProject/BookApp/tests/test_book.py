@@ -3,7 +3,7 @@ import unittest
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from BookApp.models import BookModelsTest
+from BookApp.models import BookModels
 from django.urls import reverse, resolve
 from BookApp.views import base
 from django.utils import timezone
