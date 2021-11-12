@@ -1,0 +1,203 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS oraz własne style-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/contact_base.css' %}" rel="stylesheet">
+    <title>Book App</title>
+</head>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check" viewBox="0 0 16 16">
+        <title>Check</title>
+        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+    </symbol>
+</svg>
+
+<div class="container py-3">
+
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4"><i class="fab fa-pied-piper"></i>PortSG.PL</span>
+        </a>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'BookApp:base' %}">Strona główna</a>
+            <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'BookApp:book_table' %}">Lista książek</a>
+            <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'BookApp:book_add' %}">Dodaj książkę</a>
+            <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'BookApp:book_import' %}">Importuj
+                książki</a>
+        </nav>
+    </div>
+</div>
+<body>
+{% block content %}
+
+<div class="container pricing-header p-3 pb-md-4 mx-auto text-center mt-4">
+    <h1 class="display-4 fw-normal text-font">Projekt Book App<i class="fas fa-bookmark"></i></h1>
+    <hr>
+</div>
+
+
+<div class="container pb-3">
+    <div class="col-auto">
+        <p class="fs-5 text-muted mt-3"><i class="fas fa-quote-right"></i>&nbsp;Krótki opis... :) Więc z zadań to
+            zrobiłem dużo, ale nie wszystko chyba ze względu na całkowity brak doświadczenia w takiej "fizycznej" pracy
+            i zespole. Mimo wszystko jak na Juniora bez stażu myślę, że jest całkiem ok. Brakuje mi strasznie mentora/
+            osoby gdzie mógłym zapytać o konkretne "smaczki" chociażby konwersja daty. Na dniach wypróbuje regex i dodam
+            edit kodu. Podsyłam ten projekt i to nie w pełni gotowy ponieważ nie będę kłamał, że znam REST API. A Może
+            wcale się kod nie spodoba :( Nie wnikałem wcześniej w REST API więc potrzebuję chwili czasu, żeby zapoznać
+            się z jak to działa itd. a czas leci więc, żeby ktoś nie pomyślał, że kompletnie nic nie zrobiłem więc
+            chciałem dodać chociaż to co potrafiłem mi się zrobić. Na koniec na serio ale to bardzo serio zależy mi
+            bardzo na pracy w <b class="stx">STX Next</b> troche śledziłem to co się tam dzieje w mediach społecznościowych i jestem
+            zachwycony tym wszystkim. Ale sam zachwyt nie wystraczy, więc jestem bardzo zdeterminowy i ze względu na
+            brak komercyjnego doświadczenia jestem gotowy nawet z "półdarmo" pracować. Podejmę wszystkie kroki i
+            szkolena, żeby tylko nie odstawać od grupy. Nie rzucam słów na wiatr więc myślę, że warto we mnie
+            zainwestować a na pewno dołożę wszelkich starań, żeby dobrze nam się razem pracowało :)</p>
+    </div>
+</div>
+
+
+<div class="container">
+    <p class="mt-5 text-center text-muted font-monospace">Zamieszczam poniżej link do repozytorum githuba z całą
+        zawartością kodu.</p>
+    <center><i class="fab fa-github fa-4x mt-2"></i></center>
+    <center class="mt-2"><span class="fs-5 color-item"><i class="fas fa-arrow-right"></i><a class="href" href="#"> Kliknij</a></span>
+    </center>
+
+    <center><p class="text-muted mt-3">Oraz link do mojego portfolio<br/>
+    <a href="https://django4ever.pl/" class="href h5">Django4ever.pl</a>
+    </p></center>
+</div>
+
+
+<div class="container bg-light mt-4 mb-4 pt-4 pb-4">
+    <div class="row d-flex flex-row bd-highlight">
+        <span class="fs-2 text-muted">Co jest do zrobienia/zrobiono:</span>
+        <div class="row d-flex flex-row bd-highlight">
+            <div class="col-6 fs-5 col-todo mt-3">
+                <ul>
+                    <li>Dodać jeszcze testy</li>
+                    <li>Dodać widget dla przedziału datowego</li>
+                    <li>Przekonwertować date(regex) pobieraną z importu<br/>
+                        (dodano commit dla save() ze względu na date)
+                    </li>
+                    <li>Cześć 3. Dodać widok REST API</li>
+                </ul>
+            </div>
+            <div class="col-6 fs-5 text-success mt-3">
+                <ul>
+                    <li>Dodano model/baze na książki</li>
+                    <li>Dodano widok listy wszystkich znajdujących się książek w bazie</li>
+                    <li>Możliwość filtorwania listy ksiażek</li>
+                    <li>Widok z formularzem dodawanie/edycję/kasowanie/podgląd</li>
+                    <li>Dodawno widok który importuje ksiażki według słów kluczowych z API</li>
+                    <li>Dodano kilka prostych testów</li>
+                    <li>Sprawdzono kod pod względem standarów PEP8</li>
+                    <li>Wykorzystano bootstrapa dla stylistyki strony</li>
+                    <li>Użyto innych bibliotek [django-filters, crispy_forms]</li>
+                    <li>+ Dodano formularz kontaktowy</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Sekcja kontakt-->
+<section class="contact" id="contact">
+    <div class="container">
+        <hr>
+        <div class="heading text-center pt-4 text-font-cont">
+            <h2>Napisz
+                <span> do mnie </span></h2>
+            <p class="font-monospace">Jeżeli chcesz się ze mną skontaktować...
+                <br>Pisz śmiało a na pewno postaram się udzielić odpowiedzi =)</p>
+        </div>
+        <div class="row font-monospace">
+            <div class="col-md-5">
+                <div class="text-secondary" style="font-family: 'Josefin Sans', sans-serif;">
+                    <h3>Informacje o mnie:</h3>
+                    <p class="font-monospace">Najważniejsze dane poniżej.</p>
+                </div>
+                <div class="content">
+                    <!-- Info-1 -->
+                    <div class="info">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4 class="d-inline-block">Telefon :
+                            <br>
+                            <a id="phone"><p class="text-danger mb-0">Kliknij na mnie, aby wyświetlić numer.</p></a>
+                        </h4>
+                    </div>
+                    <!-- Info-2 -->
+                    <div class="info">
+                        <i class="far fa-envelope"></i>
+                        <h4 class="d-inline-block">E-MAIL :
+                            <br>
+                            <a id="email"><p class="text-danger mb-0">Kliknij na mnie, aby wyświetlić e-mail.</p></a>
+                        </h4>
+                    </div>
+                    <!-- Info-3 -->
+                    <div class="info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4 class="d-inline-block">Adres :<br>
+                            <span>Ślesin 62-561, Konin</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <form id='contact-form' method='POST'>
+                    <input type='hidden' name='form-name' value='ContactView'>
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="text" name="name" class="form-control"
+                                   placeholder="Imię i opcjonalnie Nazwisko">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="email" name="email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" name="message" id="comment"
+                                  placeholder="Treść wiadomości"></textarea>
+                    </div>
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
+                    <div class="g-recaptcha mt-2 mb-2" data-sitekey="6Ld9vSkdAAAAAOx1Werb7vZlvqL1xKGxnLcpvPmW"></div>
+
+                    <button class="btn btn-block" type="submit">Wyślij wiadomość</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="footer pt-4">
+    <div class="container">
+        <p class="text-center fs-5 pt-4 text-uppercase text-secondary">copyright © Sebastian Grabarczyk</p>
+    </div>
+</div>
+
+<script>
+document.getElementById("phone").onclick = function() {myPhoneFunction()};
+
+function myPhoneFunction() {
+  document.getElementById("phone").innerHTML = "724 309 198";
+}
+
+document.getElementById("email").onclick = function() {myFunction()};
+
+function myFunction() {
+  document.getElementById("email").innerHTML = "rec@interia.eu";
+}
+</script>
+
+{% endblock %}
+</body>
+</html>

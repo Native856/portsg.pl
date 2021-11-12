@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Patrick+Hand&family=Zen+Kurenaido&display=swap');
+
+.text-font {
+    font-family: 'Zen Kurenaido', sans-serif;
+    letter-spacing: 4px;
+    color: #4d8cab;
+}
+
+.text-font-cont {
+    font-family: 'Zen Kurenaido', sans-serif;
+    letter-spacing: 2px;
+    color: #6c757d!important;
+}
+
+.col-todo {
+    color: #c15c5c;
+}
+
+.href {
+    color: #6c84a9;
+    text-decoration: none;
+}
+
+.stx {
+    color: #09b3bf;
+}

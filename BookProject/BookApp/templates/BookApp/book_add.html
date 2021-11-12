@@ -1,0 +1,54 @@
+{% extends "BookApp/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<link href="{% static 'css/book_table.css' %}" rel="stylesheet">
+
+<div class="przycisk">
+    <button class="przycisk" type="button" name="button"><a href="{% url 'BookApp:book_table' %}">
+        <i class="fas fa-arrow-circle-left fa-3x"></i></a>
+    </button>
+</div>
+
+<div class="container d-flex justify-content-center" style="color:#7998b9">
+    <i class="fas fa-plus-circle fa-4x"></i>
+</div>
+<div>
+    <p class="text-center h2 text-secondary mt-4">(Dodaj książkę)</p>
+</div>
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container d-flex justify-content-center">
+        <div class="col-lg-5">
+
+            {{ form.title|as_crispy_field }}
+
+            {{ form.author|as_crispy_field }}
+
+            {{ form.pub_date|as_crispy_field }}
+
+            {{ form.nr_isbn_one|as_crispy_field }}
+
+            {{ form.nr_isbn_two|as_crispy_field }}
+
+            {{ form.page_co|as_crispy_field }}
+
+            {{ form.img_link|as_crispy_field }}
+
+            {{ form.pub_lang|as_crispy_field }}
+        </div>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <p>
+            <button type="submit" name="submit" value="search" class="btn btn-primary my-2">Dodaj książkę</button>
+        </p>
+    </div>
+
+</form>
+
+{% endblock %}

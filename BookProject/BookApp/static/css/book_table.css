@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap');
+
+.table-colors {
+    color: #7c939f;
+}
+
+.table>:not(:first-child) {
+    border-top: 1px solid currentColor;
+}
+
+.tema {
+    font-family: 'Baloo Da 2', cursive;
+    font-size: 20px;
+    color: #284a88;
+    text-decoration: none;
+}
+
+.przycisk {
+    width: 100px;
+    height: 100px;
+    color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    background-color: #e7e7e799;
+    position: fixed;
+    bottom: 400px;
+    right: 20px;
+}

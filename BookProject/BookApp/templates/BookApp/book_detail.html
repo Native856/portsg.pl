@@ -1,0 +1,44 @@
+{% extends "BookApp/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link href="{% static 'css/book_detail.css' %}" rel="stylesheet">
+
+<div class="container d-flex justify-content-center" style="color:#7998b9">
+    <i class="fas fa-info-circle fa-4x"></i>
+</div>
+<div>
+    <p class="text-center h2 text-secondary mt-4">(Szczegóły książki)</p>
+</div>
+
+<div class="container mt-5 d-flex justify-content-center">
+        {% if det.img_link %}
+        <img src="{{ det.img_link }}">
+        {% else %}
+        Brak zdjęcia.
+        {% endif %}
+</div>
+
+
+<div class="container mt-4 bg-light p-4 card-3">
+
+        <div class="col-lg-12 h4 ">
+            <span class="h1 detail-font">Tytuł: <b class="detail-value-font">{{ det.title }}</b></span><br/>
+
+            <span class="h1 detail-font">Autor: <b class="detail-value-font">{{ det.author }}</b></span><br/>
+
+            <span class="h1 detail-font">Data publikacji: <b class="detail-value-font">{{ det.pub_date }}</b></span><br/>
+
+            <span class="h1 detail-font">Numer isbn: <b class="detail-value-font">{{ det.nr_isbn_one }}</b></span><br/>
+            {% if det.nr_isbn_two %}
+                <span class="h1 detail-font">Numer isbn drugi: <b class="detail-value-font">{{ det.nr_isbn_two }}</b></span><br/>
+                {% else %}
+            {% endif %}
+            <span class="h1 detail-font">Liczba stron: <b class="detail-value-font">{{ det.page_co }}</b></span><br/>
+            <span class="h1 detail-font">Język publikacji: <b class="detail-value-font">{{ det.pub_lang }}</b></span>
+        </div>
+
+</div>
+
+{% endblock %}
