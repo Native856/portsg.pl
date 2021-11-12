@@ -1,13 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Patrick+Hand&family=Zen+Kurenaido&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300&display=swap');
+
 
 .detail-font {
-    font-family: 'Dancing Script', cursive;
+    font-family: 'Zilla Slab', serif;
     color: grey;
 }
 
 .detail-value-font {
-    font-family: 'Zen Kurenaido', sans-serif;
+    font-family: 'Zilla Slab', serif;
     letter-spacing: 4px;
     color: #4d8cab;
 }
