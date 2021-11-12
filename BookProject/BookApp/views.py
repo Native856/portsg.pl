@@ -2,6 +2,8 @@ import requests
 import json
 import re
 from django.shortcuts import render, reverse, get_object_or_404, HttpResponseRedirect, redirect
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib import messages
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.edit import UpdateView
