@@ -13,7 +13,7 @@ class BookModels(models.Model):
     nr_isbn_two = models.IntegerField(blank=True, null=True, verbose_name='Drugi ISBN')
     page_co = models.IntegerField(verbose_name='Ilość stron')
     img_link = models.CharField(max_length=200, null=True, blank=True, verbose_name='Link do okładki')
-    pub_lang = models.CharField(max_length=20, verbose_name='Język publikacji')
+    pub_lang = models.CharField(max_length=20, verbose_name='Język publikacji (wpisz: PL lub EN)')
 
     def __str__(self):
         return "Tytuł książki {}".format(self.title)
