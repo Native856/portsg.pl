@@ -38,6 +38,13 @@
 <body>
 {% block content %}
 
+{% for message in messages %}
+<div class="container alert alert-warning alert-dismissible fade show" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    {{ message }}
+</div>
+{% endfor %}
+    
 <div class="container pricing-header p-3 pb-md-4 mx-auto text-center mt-4">
     <h1 class="display-4 fw-normal text-font">Projekt Book App<i class="fas fa-bookmark"></i></h1>
     <hr>
