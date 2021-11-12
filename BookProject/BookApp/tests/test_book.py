@@ -57,15 +57,13 @@ class BaseContentTest(TestCase):
                          numer_ISBN=8381162645,
                          liczba_stron=304,
                          link_do_okladki=None,
-                         jezyk_publikacji='PL')
-        # Sprawdzamy, czy na stronie głownej znajduje sie wpis "Brak opisu.", jeżeli opis nie został dodany.
-        # self.assertContains(response, 'Hobbit')
+                         jezyk_publikacji='PL'
         response = self.client.get(reverse('BookApp:book_table'))
         self.assertContains(response, cb.tytul)
-        # Sprawdza, czy zawiera pustą liste dla opisu desc
+        # Sprawdza, czy zawiera liste z tytułem Hobbit
         self.assertQuerysetEqual(response.context["book_list"], ['<BookModelsTest: Tytuł książki Hobbit>'])
-#
-#
+
+                         
 class TestUrls(TestCase):
     def test_urls_base(self):
         url = reverse('BookApp:base')
