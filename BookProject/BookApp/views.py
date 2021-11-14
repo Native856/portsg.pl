@@ -14,6 +14,10 @@ import collections
 from django.conf import settings
 
 
+data = {
+    'info': '',
+}
+
 # Strona główna z pocztą z portfolio
 def base(request):
     if request.method == 'POST':  # Czy formularz zostal wyslany od klienta na serwer
