@@ -131,7 +131,7 @@ def book_api_views(request):
                 
                 # Wyciąganie daty i rozbijanie, niestety nie wiem jeszcze jak dodać do DateField, kiedy 
                 # występuje tylko sam rok lub rok z datą. Poniżej kod z przykładową datą.
-                # date_n= '2022-12-25'
+                # date_n = '2022-12-25'
                 # year_pattern = r'(?P<year>\d{4})'
                 # month_pattern = r"(?:-(?P<month>\d{1,2}))"
                 # day_pattern = r"(?:-(?P<day>\d{1,2}))"
@@ -145,13 +145,10 @@ def book_api_views(request):
                 # 
                 # if year_n and month_n and day_n:
                 #     a = "{}.{}.{}".format(day_n, month_n, year_n)
-                #     print(a)
                 # elif year_n and month_n:
                 #     b = "{}.{}".format(month_n, year_n)
-                #     print(b)
                 # elif year_n:
                 #     c = "{}".format(year_n)
-                #     print(c)
                 # else:
                 #     print("Brak daty")
                 
