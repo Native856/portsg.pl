@@ -128,7 +128,33 @@ def book_api_views(request):
 
                 book_import.append(book_data)
 
-                # Zastosować regex pobrać date i przekonwertować
+                
+                # Wyciąganie daty i rozbijanie, niestety nie wiem jeszcze jak dodać do DateField, kiedy 
+                # występuje tylko sam rok lub rok z datą. Poniżej kod z przykładową datą.
+                # date_n= '2022-12-25'
+                # year_pattern = r'(?P<year>\d{4})'
+                # month_pattern = r"(?:-(?P<month>\d{1,2}))"
+                # day_pattern = r"(?:-(?P<day>\d{1,2}))"
+                # match_date = re.search(rf'{year_pattern}(?:{month_pattern}{day_pattern}?)?', date_n)
+                # 
+                # year_n = match_date.group('year')
+                # month_n = match_date.group('month')
+                # day_n = match_date.group('day')
+                # 
+                # print("OSOBNE: ", year_n, month_n, day_n)
+                # 
+                # if year_n and month_n and day_n:
+                #     a = "{}.{}.{}".format(day_n, month_n, year_n)
+                #     print(a)
+                # elif year_n and month_n:
+                #     b = "{}.{}".format(month_n, year_n)
+                #     print(b)
+                # elif year_n:
+                #     c = "{}".format(year_n)
+                #     print(c)
+                # else:
+                #     print("Brak daty")
+                
                 # # Zapisywanie w bazie
                 # title = get_by_keys(result, 'volumeInfo', 'title')
                 # author = get_by_keys(result, 'volumeInfo', 'authors', 0)
