@@ -105,7 +105,7 @@ def book_api_views(request):
             params = {
                 'q': '{}{}'.format(filter_choice, filter_search),
                 'key': settings.BOOK_DATA_API_KEY,
-                'maxResults': 8,
+                'maxResults': 5,
                 'printType': 'books'
 
             }
