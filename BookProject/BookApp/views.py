@@ -12,6 +12,7 @@ from .forms import BookAddForm, BookFilterForm, ContactForm
 from .filters import BookFilter
 import collections
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 data = {
@@ -184,14 +185,27 @@ def book_api_views(request):
                                                         'filter_ch': filter_ch})
 
 
-# Filtrowanie pozycji dla tabeli z książkami
+# Filtrowanie pozycji dla tabeli z książkami, lista książek oraz stronicowanie
 def book_filter_views(request):
     book_list = BookModels.objects.all()
     my_filter = BookFilter(request.GET, queryset=book_list)
     book_list = my_filter.qs
+    
+    pagination = Paginator(book_list, 5)
+    page = request.GET.get('page')
+    try:
+        pages = pagination.page(page)
+    except PageNotAnInteger:
+        # Jeżeli zmienna page nie jest liczbą całkowitą, wówczas pobierana jest pierwsza strona wyników.
+        pages = pagination.page(1)
+    except EmptyPage:
+        # Jeżeli zmienna page ma wartość większą niż numer ostatniej strony wyników, wtedy pobierana
+        # jest ostatnia strona wyników
+        pages = pagination.page(pagination.num_pages)
 
     return render(request, 'BookApp/book_table.html', {'book_list': book_list,
-                                                       'my_filter': my_filter})
+                                                       'my_filter': my_filter,
+                                                       'pages': pages})
 
 
 # Szczegóły książki
