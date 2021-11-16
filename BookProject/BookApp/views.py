@@ -209,8 +209,8 @@ def book_filter_views(request):
 
 
 # Szczegóły książki
-def book_detail_views(request, pid, slug, author, year):
-    det = get_object_or_404(BookModels, id=pid, slug=slug, author=author, pub_date__year=year)
+def book_detail_views(request, pid, slug, year):
+    det = get_object_or_404(BookModels, id=pid, slug=slug, pub_date__year=year)
     return render(request, 'BookApp/book_detail.html', {'det': det,
                                                         })
 
