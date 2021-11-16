@@ -22,7 +22,6 @@ class BookModels(models.Model):
         return reverse('BookApp:book_detail',
                        args=[self.id,
                              self.slug,
-                             self.author,
                              self.pub_date.year])
 
     class Meta:
