@@ -95,8 +95,9 @@
                 {% if book_l.pub_lang == "EN" %}
                 <span class="iconify" data-icon="emojione:flag-for-united-kingdom" data-width="30"
                       data-height="30"></span>
-                {% else %}
+                {% elif book_l.pub_lang == "PL" %}
                 <span class="iconify" data-icon="emojione:flag-for-poland" data-width="30" data-height="30"></span>
+                {% else %}
                 {% endif %}
             </p></td>
             <td><a href="{% url 'BookApp:book_update' book_l.id %}" class="btn btn-sm btn-secondary pod-edy bor mt-3"><i
