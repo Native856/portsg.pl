@@ -1,0 +1,40 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+{% if pages.has_other_pages %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center pt-4 pb-4">
+        {% if pages.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ pages.previous_page_number }}" tabindex="-1">Poprzednia strona</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Pierwsza strona</span>
+        </li>
+        {% endif %}
+        {% for i in pages.paginator.page_range %}
+        {% if pages.number == i %}
+
+        <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+        {% else %}
+        <li class="page-link"><a class="page-item" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if pages.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ pages.next_page_number }}">Następna strona</a></li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">Brak więcej stron</span>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
