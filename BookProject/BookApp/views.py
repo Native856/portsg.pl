@@ -21,6 +21,12 @@ data = {
 
 # Strona główna z pocztą z portfolio
 def base(request):
+    contact_views(request)
+    return render(request, 'BookApp/base.html')
+
+
+# Funkcja kontakt
+def contact_views(request):
     if request.method == 'POST':  # Czy formularz zostal wyslany od klienta na serwer
         form = ContactForm(request.POST)  # Formularz z wypelniona trescia
         if form.is_valid():  # Sprawdzamy walidacje tych pol z formularza. Jezeli zawartosc ma true, wykonuje ifa.
@@ -93,6 +99,30 @@ def get_by_keys(res, *keys):
         return None
 
 
+# Pobieranie i rozbijanie daty przy pomocy regex
+def get_date(date_value):
+    year_pattern = r'(?P<year>\d{4})'
+    month_pattern = r"(?:-(?P<month>\d{1,2}))"
+    day_pattern = r"(?:-(?P<day>\d{1,2}))"
+    match_date = re.search(rf'{year_pattern}(?:{month_pattern}{day_pattern}?)?', date_value)
+
+    year_n = match_date.group('year')
+    month_n = match_date.group('month')
+    day_n = match_date.group('day')
+
+    if year_n and month_n and day_n:
+        a = "{}-{}-{}".format(year_n, month_n, day_n)
+        return a
+    elif year_n and month_n:
+        b = "{}-{}".format(year_n, month_n)
+        return b
+    elif year_n:
+        c = "{}".format(year_n)
+        return c
+    else:
+        return None
+
+
 # Import książek
 def book_api_views(request):
     book_import = []
@@ -133,52 +163,36 @@ def book_api_views(request):
 
                 book_import.append(book_data)
 
-                
-                # Wyciąganie daty i rozbijanie, niestety nie wiem jeszcze jak dodać do DateField, kiedy 
-                # występuje tylko sam rok lub rok z datą. Poniżej kod z przykładową datą.
-                # date_n = '2022-12-25'
-                # year_pattern = r'(?P<year>\d{4})'
-                # month_pattern = r"(?:-(?P<month>\d{1,2}))"
-                # day_pattern = r"(?:-(?P<day>\d{1,2}))"
-                # match_date = re.search(rf'{year_pattern}(?:{month_pattern}{day_pattern}?)?', date_n)
-                # 
-                # year_n = match_date.group('year')
-                # month_n = match_date.group('month')
-                # day_n = match_date.group('day')
-                # 
-                # print("OSOBNE: ", year_n, month_n, day_n)
-                # 
-                # if year_n and month_n and day_n:
-                #     a = "{}.{}.{}".format(day_n, month_n, year_n)
-                # elif year_n and month_n:
-                #     b = "{}.{}".format(month_n, year_n)
-                # elif year_n:
-                #     c = "{}".format(year_n)
-                # else:
-                #     print("Brak daty")
-                
-                # # Zapisywanie w bazie
-                # title = get_by_keys(result, 'volumeInfo', 'title')
-                # author = get_by_keys(result, 'volumeInfo', 'authors', 0)
-                # nr_isbn_one = get_by_keys(result, 'volumeInfo', 'industryIdentifiers', 0, 'identifier')
-                # nr_isbn_two = get_by_keys(result, 'volumeInfo', 'industryIdentifiers', 1, 'identifier'),
-                # page_co = get_by_keys(result, 'volumeInfo', 'pageCount')
-                # img_link = get_by_keys(result, 'volumeInfo', 'imageLinks', 'thumbnail')
-                # pub_lang = get_by_keys(result, 'saleInfo', 'country')
-                #
-                # book_data_save = BookModels(
-                #     title=title,
-                #     author=author,
-                #     nr_isbn_one=nr_isbn_one,
-                #     nr_isbn_two=nr_isbn_two,
-                #     data_publikacji=None,
-                #     numer_ISBN=222,
-                #     page_co=page_co,
-                #     img_link=img_link,
-                #     pub_lang=pub_lang,
-                # )
-                # book_data_save.save()
+                date_value = get_by_keys(result, 'volumeInfo', 'publishedDate')
 
+                # Przekazywanie daty do funkcji rozbijania, oraz kompletowania daty dla bazy danych.
+                pub_date_db = get_date(date_value)
+
+                # Zapisywanie w bazie
+                title = get_by_keys(result, 'volumeInfo', 'title')
+                author = get_by_keys(result, 'volumeInfo', 'authors', 0)
+                pub_date = pub_date_db
+                nr_isbn_one = get_by_keys(result, 'volumeInfo', 'industryIdentifiers', 0, 'identifier')
+                nr_isbn_two = get_by_keys(result, 'volumeInfo', 'industryIdentifiers', 1, 'identifier')
+                page_co = get_by_keys(result, 'volumeInfo', 'pageCount')
+                img_link = get_by_keys(result, 'volumeInfo', 'imageLinks', 'thumbnail')
+                pub_lang = get_by_keys(result, 'volumeInfo', 'language')
+                print("JEZYK: ", pub_lang)
+
+                # Kasowanie nawiasów dla drugiego nr isbn
+                isbn_two_replace = str(nr_isbn_two).replace("('", "").replace("',)", "")
+
+                book_data_save = BookModels(
+                    title=title,
+                    author=author,
+                    pub_date=pub_date,
+                    nr_isbn_one=nr_isbn_one,
+                    nr_isbn_two=isbn_two_replace,
+                    page_co=page_co,
+                    img_link=img_link,
+                    pub_lang=pub_lang,
+                )
+                book_data_save.save()
     else:
         filter_ch = BookFilterForm()
     return render(request, "BookApp/book_import.html", {'book_import': book_import,
