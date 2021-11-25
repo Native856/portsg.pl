@@ -50,8 +50,11 @@
             <td><a href="{{ book_l.get_absolute_url }}" class="tema">
                 {{ book_l.title|truncatechars:50 }}
             </a><br/>
+                {% if book_l.author %}
                 <p class="text-secondary">{{ book_l.author }}</p></td>
-            <td>{{ book_l.pub_date | date:"d.m.Y" }}</td>
+                {% else %}
+                {% endif %}
+            <td>{{ book_l.pub_date}}</td>
             <td>{{ book_l.nr_isbn_one }}<br/>
             {% if book_l.nr_isbn_two %}
                 {{ book_l.nr_isbn_two }}
@@ -59,7 +62,11 @@
                 Brak drugiego nr.
                 {% endif %}
             </td>
+            {% if book_l.page_co %}
             <td>{{ book_l.page_co }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
             <td>
                 {% if book_l.img_link %}
                 <!-- Button trigger modal -->
@@ -148,3 +155,4 @@
 
 {% include "BookApp/pagination.html" with page=list %}
 {% endblock %}
+
