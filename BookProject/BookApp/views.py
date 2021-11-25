@@ -205,7 +205,7 @@ def book_filter_views(request):
     my_filter = BookFilter(request.GET, queryset=book_list)
     book_list = my_filter.qs
     
-    pagination = Paginator(book_list, 5)
+    pagination = Paginator(book_list, 12)
     page = request.GET.get('page')
     try:
         pages = pagination.page(page)
