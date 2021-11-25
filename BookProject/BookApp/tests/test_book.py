@@ -19,31 +19,35 @@ class ResponseTest(TestCase):
         self.failUnlessEqual(response.status_code, 200)
 
 
-def create_book(id, tytul, autor, numer_ISBN, liczba_stron, link_do_okladki, jezyk_publikacji):
+def create_book(id, title, author, slug, nr_isbn_one, nr_isbn_two, page_co, img_link, pub_lang):
     date_c = datetime.date.today()
     return BookModels.objects.create(id=id,
-                                         tytul=tytul,
-                                         autor=autor,
-                                         data_publikacji=date_c,
-                                         numer_ISBN=numer_ISBN,
-                                         liczba_stron=liczba_stron,
-                                         link_do_okladki=link_do_okladki,
-                                         jezyk_publikacji=jezyk_publikacji)
+                                     title=title,
+                                     author=author,
+                                     slug=slug,
+                                     pub_date=date_c,
+                                     nr_isbn_one=nr_isbn_one,
+                                     nr_isbn_two=nr_isbn_two,
+                                     page_co=page_co,
+                                     img_link=img_link,
+                                     pub_lang=pub_lang)
 
 
 # Tworzymy nowy wpis w bazie i sprawdzamy czy poprawnie jest zwracany
 class CreateReportTest(unittest.TestCase):
     def setUp(self):
         self.new_book = create_book(id=1,
-                                    tytul='Hobbit',
-                                    autor='J. R. R. Tolkien',
-                                    numer_ISBN=8381162645,
-                                    liczba_stron=304,
-                                    link_do_okladki=None,
-                                    jezyk_publikacji='PL')
+                                    title='Hobbit',
+                                    author='J. R. R. Tolkien',
+                                    slug='hobbit',
+                                    nr_isbn_one=8381162645,
+                                    nr_isbn_two=3443242,
+                                    page_co=304,
+                                    img_link=None,
+                                    pub_lang='pl')
 
     def testReturn(self):
-        self.assertEqual(self.new_book.__str__(), 'Tytul książki TEST Hobbit')
+        self.assertEqual(self.new_book.__str__(), 'Tytuł książki Hobbit')
 
 
 # Tworzymy w bazie wpis ksiazki i sprawdzamy go znajduje sie pod adresem book_table
@@ -52,18 +56,22 @@ class BaseContentTest(TestCase):
         # Podobnie jak w shellu przypisujemy pod response konkretny url
         # self.assertEqual(response.status_code, 200)  # Sprawdza czy status jest rowny 200
         cb = create_book(id=1,
-                         tytul='Hobbit',
-                         autor='J. R. R. Tolkien',
-                         numer_ISBN=8381162645,
-                         liczba_stron=304,
-                         link_do_okladki=None,
-                         jezyk_publikacji='PL'
+                         title='Hobbit',
+                         author='J. R. R. Tolkien',
+                         slug='hobbit',
+                         nr_isbn_one=8381162645,
+                         nr_isbn_two=3443242,
+                         page_co=304,
+                         img_link=None,
+                         pub_lang='pl')
+        # Sprawdzamy, czy na stronie głownej znajduje sie wpis "Brak opisu.", jeżeli opis nie został dodany.
+        # self.assertContains(response, 'Hobbit')
         response = self.client.get(reverse('BookApp:book_table'))
-        self.assertContains(response, cb.tytul)
-        # Sprawdza, czy zawiera liste z tytułem Hobbit
-        self.assertQuerysetEqual(response.context["book_list"], ['<BookModelsTest: Tytuł książki Hobbit>'])
+        self.assertContains(response, cb.title)
+        # Sprawdza, czy zawiera pustą liste dla opisu desc
+        self.assertQuerysetEqual(response.context["book_list"], ['<BookModels: Tytuł książki Hobbit>'])
 
-                         
+
 class TestUrls(TestCase):
     def test_urls_base(self):
         url = reverse('BookApp:base')
