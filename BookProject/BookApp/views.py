@@ -147,6 +147,12 @@ def book_api_views(request):
 
             r = requests.get(search_url, params=params)
             results = r.json()['items']
+            try:
+                results = r.json()['items']
+            except KeyError:
+                messages.error(request, "Brak wyników")
+                return render(request, "BookApp/book_import.html", {'book_import': book_import,
+                                                                    'filter_ch': filter_ch})
 
             for result in results:
 
