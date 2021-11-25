@@ -146,7 +146,6 @@ def book_api_views(request):
             }
 
             r = requests.get(search_url, params=params)
-            results = r.json()['items']
             try:
                 results = r.json()['items']
             except KeyError:
