@@ -44,7 +44,8 @@
     {{ message }}
 </div>
 {% endfor %}
-    
+
+
 <div class="container pricing-header p-3 pb-md-4 mx-auto text-center mt-4">
     <h1 class="display-4 fw-normal text-font">Projekt Book App<i class="fas fa-bookmark"></i></h1>
     <hr>
@@ -53,19 +54,15 @@
 
 <div class="container pb-3">
     <div class="col-auto">
-        <p class="fs-5 text-muted mt-3"><i class="fas fa-quote-right"></i>&nbsp;Krótki opis... :) Więc z zadań to
-            zrobiłem dużo, ale nie wszystko chyba ze względu na całkowity brak doświadczenia w takiej "fizycznej" pracy
-            i zespole. Mimo wszystko jak na Juniora bez stażu myślę, że jest całkiem ok. Brakuje mi strasznie mentora /
-            osoby, gdzie mógłym zapytać o konkretne "smaczki" chociażby konwersja daty. Na dniach wypróbuje regex i dodam
-            edit kodu. Podsyłam ten projekt i to nie w pełni gotowy ponieważ nie będę kłamał, że znam REST API. A Może
-            wcale się kod nie spodoba :( Nie wnikałem wcześniej w REST API więc potrzebuję chwili czasu, żeby zapoznać
-            się z jak to działa itd. a czas leci więc, żeby ktoś nie pomyślał, że kompletnie nic nie zrobiłem. Postanowiłem
-            chciałem dodać chociaż to co potrafiłem zrobić. Na koniec na serio ale to bardzo serio zależy mi
-            bardzo na pracy w <b class="stx">STX Next</b> troche śledziłem to co się tam dzieje w mediach społecznościowych i jestem
-            zachwycony tym wszystkim. Ale sam zachwyt nie wystraczy, więc jestem bardzo zdeterminowy i ze względu na
-            brak komercyjnego doświadczenia jestem gotowy nawet za "półdarmo" pracować. Podejmę wszystkie kroki i
-            szkolena, żeby tylko nie odstawać od grupy. Nie rzucam słów na wiatr więc myślę, że warto we mnie
-            zainwestować a na pewno dołożę wszelkich starań, żeby dobrze nam się razem pracowało :)</p>
+        <p class="fs-5 text-muted mt-3"><i class="fas fa-quote-right"></i>&nbsp;Krótki opis... :) Jest to odrębna aplikacja,
+            która służy do importowania książek z wykorzystaniem API oraz zapisywaniu ich w bazie. Z możliwością
+            filtrowania wyników. Możemy również filtrować pozycje w określonym zakresie daty. Możemy dodać również
+            ręcznie książkę. Oraz sprawdzić szczegóły książki. Całość wykonana jest w formie tabeli przy pomocy
+            bootstrapa. Użyto również okna modalnego dla szybszego podglądu okładki książki o ile istnieje. Każdą
+            pozycje dodatkowo możemy kasować, lub edytować. Stronicowanie ma zapewnić większą czytelność do 12 wyników.
+            Projekt jest myślę całkiem prosty, ale pokazuje możliwości wykorzystania API. Oczywiście poniżej odnośnik
+            do repozytorium. Myślę, że strona jest przyjazna dla oka :)
+        </p>
     </div>
 </div>
 
@@ -77,7 +74,7 @@
     <center class="mt-2"><span class="fs-5 color-item"><i class="fas fa-arrow-right"></i><a class="href" href="#"> Kliknij</a></span>
     </center>
 
-    <center><p class="text-muted mt-3">Oraz link do mojego portfolio<br/>
+    <center><p class="text-muted mt-3">Oraz link do mojego głównego portfolio<br/>
     <a href="https://django4ever.pl/" class="href h5">Django4ever.pl</a>
     </p></center>
 </div>
@@ -85,28 +82,24 @@
 
 <div class="container bg-light mt-4 mb-4 pt-4 pb-4">
     <div class="row d-flex flex-row bd-highlight">
-        <span class="fs-2 text-muted">Co jest do zrobienia/zrobiono:</span>
+        <span class="fs-2 text-muted">Co znajduje się w aplikacji Book:</span>
         <div class="row d-flex flex-row bd-highlight">
-            <div class="col-6 fs-5 col-todo mt-3">
+            <div class="col-6 fs-5 text-success mt-3">
                 <ul>
-                    <li>Dodać jeszcze dodatkowe testy</li>
-                    <li>Cześć 3. Dodać widok REST API</li>
+                    <li>Model/baze na książki</li>
+                    <li>Widok listy wszystkich znajdujących się książek w bazie</li>
+                    <li>Możliwość filtorwania listy ksiażek</li>
+                    <li>Widok z formularzem dodawanie/edycję/kasowanie/podgląd</li>
+                    <li>Widok który importuje ksiażki według słów kluczowych z API</li>
                 </ul>
             </div>
             <div class="col-6 fs-5 text-success mt-3">
                 <ul>
-                    <li>Dodano model/baze na książki</li>
-                    <li>Dodano widok listy wszystkich znajdujących się książek w bazie</li>
-                    <li>Możliwość filtorwania listy ksiażek</li>
-                    <li>Widok z formularzem dodawanie/edycję/kasowanie/podgląd</li>
-                    <li>Dodano widok który importuje ksiażki według słów kluczowych z API</li>
-                    <li>Dodano kilka prostych testów</li>
+                    <li>Kilka prostych testów</li>
                     <li>Sprawdzono kod pod względem standarów PEP8</li>
                     <li>Wykorzystano bootstrapa dla stylistyki strony</li>
                     <li>Użyto innych bibliotek [django-filters, crispy_forms]</li>
-                    <li>Dodano zapis wyszukiwanych książek do bazy danych</li>
-                    <li>+ Dodano formularz kontaktowy</li>
-                    <li>+ Dodano stronicowanie</li>
+                    <li>Dodano formularz kontaktowy</li>
                 </ul>
             </div>
         </div>
@@ -204,11 +197,12 @@ function myFunction() {
 </script>
 
 {% endblock %}
-    
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
         crossorigin="anonymous">
 </script>
-    
+
+
 </body>
 </html>
